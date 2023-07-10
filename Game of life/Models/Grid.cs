@@ -5,8 +5,7 @@
         public int ROWS;
         public int COLUMNS;
 
-        public Cell[] currentGrid;
-        public List<int> currentlyAliveCells = new(); //list of the index of alive cells
+        public HashSet<int> currentlyAliveCells = new(); //list of the index of alive cells
 
         public Grid(InitialState initialState)
         {
@@ -16,16 +15,11 @@
         }
 
         //Creates all Cells
-        //Fills the currentGrid array
         //Fills the currentlyAliveCells list
         private void FillGrid(bool[] initialGrid)
         {
-            currentGrid = new Cell[ROWS*COLUMNS];
-
             for(int i = 0; i < ROWS*COLUMNS; i++)
             {
-                currentGrid[i] = new Cell(initialGrid[i]);
-
                 if (initialGrid[i])
                     currentlyAliveCells.Add(i);
             }

@@ -13,7 +13,7 @@ namespace Game_of_life.Behavior
 
             int aliveNeighbours = 0;
 
-            //I don't know how to do it otherwise
+            /*//I don't know how to do it otherwise
             //The grid is warped
             //Next to it
             aliveNeighbours += AddNeighbourValue(grid, 
@@ -39,6 +39,20 @@ namespace Game_of_life.Behavior
                 DetermineAndCombinePositions(grid.COLUMNS, grid.ROWS,
                     targetCellIndex, targetRow, targetColumn, 1,
                     horizontalOffset));
+            }*/
+
+            for (int verticalOffset = -1; verticalOffset <= 1; verticalOffset++)
+            {
+                for (int horizontalOffset = -1; horizontalOffset <= 1; horizontalOffset++)
+                {
+                    //current cell
+                    if (verticalOffset == 0 && horizontalOffset == 0)
+                        continue;
+
+                    aliveNeighbours += AddNeighbourValue(grid, 
+                        DetermineAndCombinePositions(grid.COLUMNS, grid.ROWS, targetCellIndex,
+                        targetRow, targetColumn, verticalOffset, horizontalOffset));
+                }
             }
 
             return aliveNeighbours;
@@ -83,13 +97,72 @@ namespace Game_of_life.Behavior
 
         private static int AddNeighbourValue(Grid grid, int index)
         {
-            return grid.currentGrid[index].isAlive ? 1 : 0;
+            return grid.currentlyAliveCells.Contains(index) ? 1 : 0;
         }
 
-        //TODO
-        public static void GetNextState(Grid grid)
+        /// <summary>
+        /// Updates the currently alive cells and the current grid
+        /// </summary>
+        /// <param name="grid"></param>
+        public static void GetNextIteration(Grid grid)
         {
-            
+            //cells alive in the next iteration
+            HashSet<int> nextAliveCells = new();
+
+            //Go through the alive list and get the number of neighbours of each
+            AddNextAliveCells(grid, grid.currentlyAliveCells, nextAliveCells, true);
+
+            //Go through the dead cells around the currently alive ones to find those who will become alive
+            HashSet<int> deadCells = FindInterstingDeadCells(grid);
+            AddNextAliveCells(grid, deadCells, nextAliveCells, false);
+
+            //Remplace the old HashSet
+            grid.currentlyAliveCells = nextAliveCells;
+        }
+
+        
+        private static void AddNextAliveCells(Grid grid, HashSet<int> targetSet, HashSet<int> nextAliveCells, bool isAlive)
+        {
+            int neighbours;
+            foreach (int aliveCellIndex in targetSet)
+            {
+                neighbours = AliveNeighboursCount(grid, aliveCellIndex);
+                if (neighbours == 3 || (isAlive && neighbours == 2))
+                    nextAliveCells.Add(aliveCellIndex);
+            }
+        }
+
+
+
+        /// <summary>
+        /// Returns a hashSet of the indexes of dead cells around the alive ones
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <returns></returns>
+        private static HashSet<int> FindInterstingDeadCells(Grid grid)
+        {
+            HashSet<int> deadCells = new();
+
+            foreach(int cellIndex in grid.currentlyAliveCells)
+            {
+                int targetRow = cellIndex / grid.COLUMNS;
+                int targetColumn = cellIndex % grid.COLUMNS;
+
+                for(int verticalOffset = -1; verticalOffset <= 1; verticalOffset++)
+                {
+                    for(int horizontalOffset = -1; horizontalOffset <= 1; horizontalOffset++)
+                    {
+                        //current cell
+                        if (verticalOffset == 0 && horizontalOffset == 0)
+                            continue;
+
+                        deadCells.Add(DetermineAndCombinePositions(grid.COLUMNS, grid.ROWS, cellIndex,
+                            targetRow, targetColumn, verticalOffset, horizontalOffset));
+                    }
+                }
+            }
+
+            return deadCells;
         }
     }
 }
