@@ -1,8 +1,9 @@
 ﻿using Game_of_life.Models;
+using System.Data.Common;
 
 namespace Game_of_life.Behavior
 {
-    internal class GridActions
+    public class GridActions
     {
         //TODO
         public static int AliveNeighboursCount(Grid grid, int targetCellIndex)
@@ -15,10 +16,12 @@ namespace Game_of_life.Behavior
             //I don't know how to do it otherwise
             //The grid is warped
             //Next to it
-            aliveNeighbours += AddNeighbourValue(grid, DeterminePosition(
-                grid.COLUMNS, targetCellIndex, targetRow, 1));
-            aliveNeighbours += AddNeighbourValue(grid, DeterminePosition(
-                grid.COLUMNS, targetCellIndex, targetRow, -1));
+            aliveNeighbours += AddNeighbourValue(grid, 
+                DeterminePosition(grid.COLUMNS, targetCellIndex, targetRow,
+                1) + grid.COLUMNS * targetRow);
+            aliveNeighbours += AddNeighbourValue(grid, 
+                DeterminePosition(grid.COLUMNS, targetCellIndex, targetRow,
+                -1) + grid.COLUMNS * targetRow);
 
             //The line above
             for(int horizontalOffset = -1; horizontalOffset <= 1; horizontalOffset++)
@@ -59,22 +62,23 @@ namespace Game_of_life.Behavior
             return row * columns + column;
         }
 
-        /*
-            Returns the position of a cell with a certain offset, either its
-            column or row
-            @param:
-            maxValue: total number of rows of columns
-            targetCellIndex: the position of the cell from which the position 
-                    is calculated
-            targetRow: row or column of the cell from which the position is
-                    calculated
-            offset: can be -1 (left or above), 0 or 1 (right or under)
-         */
+        /// <summary>
+        /// Returns the position of a cell with a certain offset, either its 
+        /// column or row
+        /// </summary>
+        /// <param name="maxValue">total number of rows of columns</param>
+        /// <param name="targetCellIndex"> the position of the cell from
+        /// which the position is calculated
+        /// <param name="targetRowCol">row or column of the cell from which
+        /// the position is calculated></param>
+        /// <param name="offset">can be -1 (left or above),
+        /// 0 or 1 (right or under)</param>
+        /// <returns></returns>
         private static int DeterminePosition(int maxValue, int targetCellIndex,
             int targetRowCol, int offset)
         {
-            return (targetCellIndex % maxValue + offset + maxValue)
-                % maxValue + targetRowCol * maxValue;
+            return (targetRowCol + offset + maxValue)
+                % maxValue;
         }
 
         private static int AddNeighbourValue(Grid grid, int index)

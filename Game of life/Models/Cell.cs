@@ -1,6 +1,6 @@
 ﻿namespace Game_of_life.Models
 {
-    internal class Cell
+    public class Cell
     {
         public bool isAlive { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Game_of_life.Models
 {
-    internal class Grid
+    public class Grid
     {
         public int ROWS;
         public int COLUMNS;
