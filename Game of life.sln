@@ -5,6 +5,10 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game of life", "Game of life\Game of life.csproj", "{7F9F61F1-91A1-4B8F-B9C6-067A99702DA1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaybeIAmTheProblem", "MaybeIAmTheProblem\MaybeIAmTheProblem.csproj", "{733018E0-845C-4AE5-B66A-1661879F5C95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game of Life.BL", "Game of Life.BL\Game of Life.BL.csproj", "{B5860196-2797-4B06-AFB4-1E39B622A3DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{7F9F61F1-91A1-4B8F-B9C6-067A99702DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F9F61F1-91A1-4B8F-B9C6-067A99702DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F9F61F1-91A1-4B8F-B9C6-067A99702DA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{733018E0-845C-4AE5-B66A-1661879F5C95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{733018E0-845C-4AE5-B66A-1661879F5C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{733018E0-845C-4AE5-B66A-1661879F5C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{733018E0-845C-4AE5-B66A-1661879F5C95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5860196-2797-4B06-AFB4-1E39B622A3DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5860196-2797-4B06-AFB4-1E39B622A3DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5860196-2797-4B06-AFB4-1E39B622A3DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5860196-2797-4B06-AFB4-1E39B622A3DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
