@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Game of Life.BL\Game of Life.BL.csproj" />
-    <ProjectReference Include="..\Game of life\Game of life.csproj" />
+    <ProjectReference Include="..\Game of life\Game of life.WF.csproj" />
   </ItemGroup>
 
 </Project>

@@ -14,6 +14,12 @@
             FillGrid(initialState.initialGrid);
         }
 
+        public Grid(int rows, int columns)
+        {
+            ROWS = rows;
+            COLUMNS = columns;
+        }
+
         //Creates all Cells
         //Fills the currentlyAliveCells list
         private void FillGrid(bool[] initialGrid)
