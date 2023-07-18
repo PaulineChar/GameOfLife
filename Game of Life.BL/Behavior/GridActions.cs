@@ -67,9 +67,9 @@ namespace Game_of_life.Behavior
             int targetCellIndex, int targetRow, int targetColumn,
             int verticalOffset, int horitontalOffset)
         {
-            int row = DeterminePosition(columns, targetCellIndex,
+            int row = DeterminePosition(rows, targetCellIndex,
                 targetRow, verticalOffset);
-            int column = DeterminePosition(rows, targetCellIndex,
+            int column = DeterminePosition(columns, targetCellIndex,
                 targetColumn, horitontalOffset);
 
             //index

@@ -10,6 +10,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Pause.png" />
+    <None Remove="Resources\Reset.png" />
+    <None Remove="Resources\Start.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Pause.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Reset.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Start.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Game of Life.BL\Game of Life.BL.csproj" />
   </ItemGroup>
 

@@ -35,6 +35,7 @@
             btnStart = new Button();
             toolTipInfo = new ToolTip(components);
             pnlCellContainer = new Panel();
+            timerIteration = new System.Windows.Forms.Timer(components);
             pnlHeader.SuspendLayout();
             SuspendLayout();
             // 
@@ -74,6 +75,7 @@
             btnPause.TabIndex = 1;
             toolTipInfo.SetToolTip(btnPause, "Pause");
             btnPause.UseVisualStyleBackColor = true;
+            btnPause.Visible = false;
             btnPause.Click += btnPause_Click;
             // 
             // btnStart
@@ -97,6 +99,10 @@
             pnlCellContainer.Name = "pnlCellContainer";
             pnlCellContainer.Size = new Size(1683, 710);
             pnlCellContainer.TabIndex = 1;
+            // 
+            // timerIteration
+            // 
+            timerIteration.Tick += timerIteration_Tick;
             // 
             // Land
             // 
@@ -122,5 +128,6 @@
         private Button btnStart;
         private ToolTip toolTipInfo;
         private Panel pnlCellContainer;
+        private System.Windows.Forms.Timer timerIteration;
     }
 }
